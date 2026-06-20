@@ -1,19 +1,19 @@
-# Student Scaffold
+# Memory Systems Lab
 
-This `src/` folder is the student version of the lab.
+This folder contains the completed baseline and advanced memory agents.
 
-- It keeps the same high-level structure
-- The Python files are intentionally incomplete and contain pseudocode / TODOs
-- The benchmark structure should include: standard benchmark + long-context stress benchmark
-- The runtime should support these providers: `openai`, `custom`, `gemini`, `anthropic`, `ollama`, `openrouter`
+- `BaselineAgent` keeps memory only within one thread.
+- `AdvancedAgent` adds persistent `User.md` profiles and compact memory.
+- `benchmark.py` runs standard and long-context stress suites offline.
+- `live_demo.py` performs a small real-provider cross-session smoke test.
+- Providers: `openai`, `custom`, `gemini`, `anthropic`, `ollama`, `openrouter`.
 
-Suggested flow:
+Run the deterministic verification:
 
-1. Start with `config.py`
-2. Implement `memory_store.py`
-3. Finish `agent_baseline.py`
-4. Finish `agent_advanced.py`
-5. Implement `benchmark.py`
-6. Make `test_agents.py` pass
+```powershell
+python -m pytest -q src\test_agents.py
+python src\benchmark.py
+```
 
-Datasets are available at the repo root in `data/`.
+For a live model, copy `.env.example` to `.env`, add the selected provider key, install
+`requirements.txt`, and run `python src\live_demo.py`. Do not commit `.env`.
